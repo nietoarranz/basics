@@ -12,11 +12,11 @@ function Cover() {
 
             <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
             <header className="App-header">
-                <Typography variant="h6" style={{color: "black"}}>
+                <Typography variant="h6" style={{ color: "black" }}>
                     Basics
                 </Typography>
-                <Box m={2}/>
-                <Button component={Link} to="/home" color="primary" variant="outlined" style={{border: "2px solid"}}>
+                <Box m={2} />
+                <Button component={Link} to="/Options" color="primary" variant="outlined" style={{ border: "2px solid" }}>
                     Start
                 </Button>
             </header>
