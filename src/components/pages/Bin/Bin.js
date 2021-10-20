@@ -1,33 +1,15 @@
 
-import React, { Component } from 'react'
-import { Typography } from '@material-ui/core';
-import { List } from '@material-ui/core';
-import { ListItem } from '@material-ui/core';
-import { ListItemAvatar } from '@material-ui/core';
-import { Avatar } from '@material-ui/core';
-import { ListItemText } from '@material-ui/core';
-import PublicIcon from '@material-ui/icons/Public';
-import FlagIcon from '@material-ui/icons/Flag';
+import React from 'react'
 import { Box } from '@material-ui/core';
-import { AppBar } from '@material-ui/core';
-import { Toolbar } from '@material-ui/core';
-import EuroSymbolIcon from '@material-ui/icons/EuroSymbol';
-import { Link } from 'react-router-dom';
-
-import { MapContainer, TileLayer, Marker, Popup, useMapEvent } from 'react-leaflet'
+import { MapContainer, TileLayer, Marker, useMapEvent } from 'react-leaflet'
 import { Icon } from "leaflet";
 import 'leaflet/dist/leaflet.css';
-import markerIconPng from "leaflet/dist/images/marker-icon.png"
 import markerLocation from "../Location.png"
 import markerBin from "./Bin.png"
-
-//import dataJson from "./fuentes.json";
 import { useEffect } from 'react';
 import axios from 'axios';
 import { Fab } from '@material-ui/core';
-import CachedIcon from '@material-ui/icons/Cached';
 import SearchIcon from '@material-ui/icons/Search';
-
 
 const Bin = () => {
 

@@ -51,7 +51,7 @@ export class Options extends Component {
                         </ListItemAvatar>
                         <ListItemText primary="Bins" />
                     </ListItem>
-                    <ListItem component={Link} to="/Bench">
+                    <ListItem component={Link} to="/Map">
                         <ListItemAvatar>
                             <img src={markerBench} style={{ height: "50px", width: "50px" }}></img>
                         </ListItemAvatar>

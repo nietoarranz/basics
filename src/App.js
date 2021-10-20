@@ -7,6 +7,7 @@ import DrinkingWater from './components/pages/DrinkingWater/DrinkingWater';
 import Toilet from './components/pages/Toilet/Toilet';
 import Bin from './components/pages/Bin/Bin';
 import Bench from './components/pages/Bench/Bench';
+import Map from './components/pages/Map/Map';
 import { ThemeProvider } from '@material-ui/core';
 import React from 'react';
 import Theme from './style/Theme';
@@ -51,6 +52,10 @@ function App() {
 									exact
 									path="/Bench"
 									component={Bench} />
+								<Route
+									exact
+									path="/Map"
+									component={Map} />
 							</Switch>
 							{/*</Box>*/}
 						</div>

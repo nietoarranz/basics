@@ -1,26 +1,46 @@
 
 import React from 'react'
 import { Box } from '@material-ui/core';
-
-import { MapContainer, TileLayer, Marker, useMapEvent } from 'react-leaflet'
+import { MapContainer, TileLayer, Marker, Popup, useMap, useMapEvent } from 'react-leaflet'
 import { Icon } from "leaflet";
 import 'leaflet/dist/leaflet.css';
-
 import markerLocation from "../Location.png"
-import markerBench from "./Bench.png"
-
-//import dataJson from "./fuentes.json";
+import markerWater from "../../img/DrinkingWater.png"
+import markerBench from "../../img/Bench.png"
+import markerBin from "../../img/Bin.png"
+import markerToilet from "../../img/Toilet.png"
 import { useEffect } from 'react';
 import axios from 'axios';
-import { Fab } from '@material-ui/core';
+import { Fab } from '@material-ui/core'
 import SearchIcon from '@material-ui/icons/Search';
 
+const Map = (props) => {
 
-const Bench = () => {
+    var option = props.option;
+    const [marker, setMarker] = React.useState(null);
+    const [amenity, setAmenity] = React.useState(null);
+
+    if(option === "bench"){
+        setMarker(markerBench);
+        setAmenity("bench")
+    }
+
+    if (option === "bin") {
+
+    }
+
+    if (option === "drinkingwater") {
+
+    }
+
+    if (option === "toilet") {
+
+    }
 
     const [data, setData] = React.useState([]);
     const [userLat, setUserLat] = React.useState(null);
     const [userLon, setUserLon] = React.useState(null);
+    const [position, setPosition] = React.useState(null);
 
     const [currentLat, setCurrentLat] = React.useState(null);
     const [currentLon, setCurrentLon] = React.useState(null);
@@ -28,6 +48,7 @@ const Bench = () => {
     var userLatV = 48.864716;
     var userLonV = 2.349;
 
+    const [map, setMap] = React.useState(null);
 
     function MyMap() {
         const map = useMapEvent('moveend', () => {
@@ -40,16 +61,41 @@ const Bench = () => {
 
     useEffect(() => {
 
+        function success(pos) {
+            var crd = pos.coords;
+
+            console.log(crd.latitude);
+            console.log(crd.longitude);
+
+            setUserLat(crd.latitude)
+            setUserLon(crd.longitude);
+        };
+
+        function error(err) {
+            console.warn('ERROR(' + err.code + '): ' + err.message);
+        };
+
+
+        var options = {
+            enableHighAccuracy: false,
+            timeout: 5000,
+            maximumAge: 0
+        };
+
+        var id = navigator.geolocation.watchPosition(success, error, options);
         navigator.geolocation.getCurrentPosition(function (position) {
             setUserLat(position.coords.latitude);
             setUserLon(position.coords.longitude);
+
+            userLatV = position.coords.latitude;
+            userLonV = position.coords.longitude;
 
             console.log("Latitude is :", userLatV);
             console.log("Longitude is :", userLonV);
 
 
             //var body = "data=[out:json];node[amenity = drinking_water](around: 6000, 48.864716, 2.349);out;"
-            var body = "data=[out:json];node[amenity = bench](around: 2000," + position.coords.latitude + "," + position.coords.longitude + ");out;"
+            var body = "data=[out:json];node[amenity = " + amenity + "](around: 2000," + position.coords.latitude + "," + position.coords.longitude + ");out;"
             var url = "https://overpass-api.de/api/interpreter";
 
             axios({
@@ -70,7 +116,6 @@ const Bench = () => {
         });
 
 
-
     }, []);
 
     //const centerMap = [48.864716, 2.349];// Paris position
@@ -89,7 +134,7 @@ const Bench = () => {
     }
 
     const reloadElements = () => {
-        var body = "data=[out:json];node[amenity = bench](around: 2000," + currentLat + "," + currentLon + ");out;"
+        var body = "data=[out:json];node[amenity = drinking_water](around: 2000," + currentLat + "," + currentLon + ");out;"
         var url = "https://overpass-api.de/api/interpreter";
 
         axios({
@@ -135,7 +180,7 @@ const Bench = () => {
                                     <Marker
                                         key={key}
                                         position={[value.lat, value.lon]}
-                                        icon={new Icon({ iconUrl: markerBench, iconSize: [30, 30], iconAnchor: [20, 20] })}
+                                        icon={new Icon({ iconUrl: marker, iconSize: [30, 30], iconAnchor: [20, 20] })}
                                     >
                                     </Marker>
                                 )
@@ -182,4 +227,4 @@ const Bench = () => {
 
 }
 
-export default Bench
+export default Map
