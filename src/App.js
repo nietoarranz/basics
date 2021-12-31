@@ -54,7 +54,7 @@ function App() {
 									component={Bench} />
 								<Route
 									exact
-									path="/Map"
+									path="/Map/:type"
 									component={Map} />
 							</Switch>
 							{/*</Box>*/}

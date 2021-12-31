@@ -7198,6 +7198,11 @@
     "lodash" "^4.17.5"
     "webpack-sources" "^1.1.0"
 
+"leaflet-edgebuffer@^1.0.6":
+  "integrity" "sha1-8pWbGCvfbOSvQatVHXJHKDk9M7s="
+  "resolved" "https://registry.npmjs.org/leaflet-edgebuffer/-/leaflet-edgebuffer-1.0.6.tgz"
+  "version" "1.0.6"
+
 "leaflet@^1.7.1":
   "integrity" "sha512-/xwPEBidtg69Q3HlqPdU3DnrXQOvQU/CCHA1tcDQVzOwm91YMYaILjNp7L4Eaw5Z4sOYdbBz6koWyibppd8Zqw=="
   "resolved" "https://registry.npmjs.org/leaflet/-/leaflet-1.7.1.tgz"

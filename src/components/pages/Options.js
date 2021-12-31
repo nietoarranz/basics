@@ -21,37 +21,36 @@ import { Height } from '@material-ui/icons';
 export class Options extends Component {
     render() {
         return (
-            <div>
-                <AppBar position="static" style={{ backgroundColor: "white" }}>
-                    <Toolbar>
-                        <Typography variant="h6" style={{ color: "black" }}>
-                            Which basic do you need?
-                        </Typography>
-                    </Toolbar>
-                </AppBar>
-                <Typography variant="h4"></Typography>
+            <div style={{backgroundColor: "#fafafa", height: "100%"}}>
+
+                
+
+
+
+
+
                 <Box m={1} />
 
                 <List>
-                    <ListItem component={Link} to="/DrinkingWater">
+                    <ListItem component={Link} to="/Map/drinkingwater">
                         <ListItemAvatar>
                             <img src={markerWater} style={{ height: "50px", width: "50px" }}></img>
                         </ListItemAvatar>
                         <ListItemText primary="Drinking fountains" />
                     </ListItem>
-                    <ListItem component={Link} to="/Toilet">
+                    <ListItem component={Link} to="/Map/toilet">
                         <ListItemAvatar>
                             <img src={markerToilet} style={{ height: "50px", width: "50px" }}></img>
                         </ListItemAvatar>
                         <ListItemText primary="Toilets" />
                     </ListItem>
-                    <ListItem component={Link} to="/Bin">
+                    <ListItem component={Link} to="/Map/bin">
                         <ListItemAvatar>
                             <img src={markerBin} style={{ height: "50px", width: "50px" }}></img>
                         </ListItemAvatar>
                         <ListItemText primary="Bins" />
                     </ListItem>
-                    <ListItem component={Link} to="/Map">
+                    <ListItem component={Link} to="/Map/bench">
                         <ListItemAvatar>
                             <img src={markerBench} style={{ height: "50px", width: "50px" }}></img>
                         </ListItemAvatar>
