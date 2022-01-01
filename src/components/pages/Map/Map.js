@@ -15,6 +15,10 @@ import { Fab } from '@material-ui/core'
 import SearchIcon from '@material-ui/icons/Search';
 import { useParams } from 'react-router-dom';
 
+import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
+import reactRouterDom from 'react-router-dom';
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
+
 
 
 const Map = (props) => {
@@ -41,6 +45,7 @@ const Map = (props) => {
     var userLonV = 2.349;
 
     const [map, setMap] = React.useState(null);
+    const [showSearchHere, setShowSearchHere] = React.useState(false);
 
     
 
@@ -49,6 +54,7 @@ const Map = (props) => {
             console.log(map.getCenter());
             setCurrentLat(map.getCenter().lat);
             setCurrentLon(map.getCenter().lng);
+            setShowSearchHere(true);
         })
         return null
     }
@@ -82,7 +88,7 @@ const Map = (props) => {
                 setNameAmenity("Fountains");
             }
 
-            if (option === "toilet") {
+            if (type === "toilet") {
                 console.log("Enter setAmenity toilets");
                 setMarker(markerToilet);
                 setAmenity("toilets");
@@ -191,15 +197,23 @@ const Map = (props) => {
     }
 
 
+    const history = useHistory()
+
+    const goBack = () => {
+        history.goBack()
+    }
+
+
+
     return (
         <div >
 
             {loadingMap && 
-                <Box style={{ height: "100vh", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center" }}>
+                <Box style={{ height: "100vh", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", backgroundColor: "#F5F5F5" }}>
                     <Box mb={3}>
                         <CircularProgress />
                     </Box>
-                    <Typography variant="h6" style={{ color: "#7a7a7a"}}>Loading map</Typography>
+                    <Typography variant="h6" style={{ color: "black"}}>Loading map</Typography>
                 </Box>
             }
 
@@ -207,11 +221,35 @@ const Map = (props) => {
             {!loadingMap &&
                 <Box style={{ height: "100vh" }}>
 
+                    <Paper
+                        style={{
+                            backgroundColor: "#ffffff",
+                            position: "fixed",
+                            zIndex: "9",
+                            inset: "30px 10px auto",
+                            paddingLeft: "25px",
+                            paddingRight: "25px",
+                            paddingTop: "15px",
+                            paddingBottom: "15px",
+                            display: "flex",
+                            flexDirection: "row",
+                            alignItems: "center",
+                            justifyContent: "flex-start",
+                            borderRadius: "10px"
+                        }}
+                        elevation={0} >
+
+                        <ArrowBackIosIcon color="primary" onClick={goBack}/>
+                        <Typography style={{ color: "black", fontSize: "18px", fontWeight: "500", marginLeft: "12px" }}>
+                            {nameAmenity}
+                        </Typography>
+                    </Paper>
+
                     
 
                     {userLat != null && userLon != null &&
                         // @ts-ignore
-                        <MapContainer center={[userLat, userLon]} zoom={16} scrollWheelZoom={true} style={{ zIndex: '1' }}>
+                        <MapContainer center={[userLat, userLon]} zoom={16} scrollWheelZoom={true} style={{ zIndex: '1' }} zoomControl={false} attributionControl={false}>
 
                             <TileLayer
                                 attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
@@ -259,18 +297,30 @@ const Map = (props) => {
                     */
                     }
 
-                    <Fab color="primary" aria-label="add" style={{
-                        margin: 0,
-                        top: 'auto',
-                        right: 20,
-                        bottom: 20,
-                        left: 'auto',
-                        position: 'fixed',
-                        // @ts-ignore
-                        zIndex: '9',
-                    }} onClick={reloadElements}>
-                        <SearchIcon />
+                    {showSearchHere &&
+                    <Fab 
+                        color="primary" 
+                        aria-label="add" 
+                        style={{
+                            margin: 0,
+                            top: 'auto',
+                            right: '0',
+                            bottom: 25,
+                            left: '0',
+                            position: 'fixed',
+                            // @ts-ignore
+                            zIndex: '9',
+                            width:'200px',
+                            margin: 'auto',
+                            maxWidth: '100%',
+                        }} 
+                        onClick={reloadElements}
+                        variant="extended"
+                    >
+                        <SearchIcon style={{marginRight: "8px"}}/>
+                        Search here
                     </Fab>
+                    }
 
 
                     {loadingElements &&

@@ -23,15 +23,16 @@ function App() {
 					<ThemeProvider theme={Theme}>
 						<div>
 							<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
+							<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap" rel="stylesheet"/>
 							{/*<Box m={3}>*/}
 							<Switch>
 								<Route
 									path="/index.html"
-									component={Cover} />
+									component={Options} />
 								<Route
 									exact
 									path="/"
-									component={Cover} />
+									component={Options} />
 								<Route
 									exact
 									path="/Options"
