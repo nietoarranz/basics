@@ -60,6 +60,19 @@ const Map = (props) => {
     }
 
     useEffect(() => {
+        const script = document.createElement("script");
+
+        //script.src = "/glup/static/js/leaflet.edgebuffer.js";
+        script.type = 'text/javascript';
+        //script.text = '!function(e,i){"function"==typeof define&&define.amd?define(["leaflet"],e):"object"==typeof exports&&(module.exports=e(require("leaflet"))),void 0!==i&&i.L&&!i.L.EdgeBuffer&&e(i.L)}(function(e){e.EdgeBuffer={previousMethods:{getTiledPixelBounds:e.GridLayer.prototype._getTiledPixelBounds}},e.GridLayer.include({_getTiledPixelBounds:function(i,t,o){var d=e.EdgeBuffer.previousMethods.getTiledPixelBounds.call(this,i,t,o),l=1;if(void 0!==this.options.edgeBufferTiles&&null!==this.options.edgeBufferTiles&&(l=this.options.edgeBufferTiles),l>0){var n=e.GridLayer.prototype.getTileSize.call(this).multiplyBy(l);d=new e.Bounds(d.min.subtract(n),d.max.add(n))}return d}})},window);';
+        script.text = '!function(e,i){"function"==typeof define&&define.amd?define(["leaflet"],e):"object"==typeof exports&&(module.exports=e(require("leaflet"))),void 0!==i&&i.L&&!i.L.EdgeBuffer&&e(i.L)}(function(e){e.EdgeBuffer={previousMethods:{getTiledPixelBounds:e.GridLayer.prototype._getTiledPixelBounds}},e.GridLayer.include({_getTiledPixelBounds:function(i,t,o){var d=e.EdgeBuffer.previousMethods.getTiledPixelBounds.call(this,i,t,o),l=3;if(void 0!==this.options.edgeBufferTiles&&null!==this.options.edgeBufferTiles&&(l=this.options.edgeBufferTiles),l>0){var n=e.GridLayer.prototype.getTileSize.call(this).multiplyBy(l);d=new e.Bounds(d.min.subtract(n),d.max.add(n))}return d}})},window);';
+        script.async = true;
+
+        document.body.appendChild(script);
+
+    }, []);
+
+    useEffect(() => {
 
         console.log("Enter UseEffect");
 
@@ -226,7 +239,7 @@ const Map = (props) => {
                             backgroundColor: "#ffffff",
                             position: "fixed",
                             zIndex: "9",
-                            inset: "30px 10px auto",
+                            inset: "40px 10px auto",
                             paddingLeft: "25px",
                             paddingRight: "25px",
                             paddingTop: "15px",
@@ -329,8 +342,11 @@ const Map = (props) => {
                                 backgroundColor: "#ffffff",
                                 position: "fixed",
                                 zIndex: "9",
-                                inset: "auto 90px 20px",
-                                padding: "20px",
+                                inset: "auto 70px 20px",
+                                paddingTop: "20px",
+                                paddingBottom: "20px",
+                                paddingRight: "30px",
+                                paddingLeft: "30px",
                                 display: "flex",
                                 flexDirection:"row",
                                 alignItems: "center",
